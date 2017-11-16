@@ -1,0 +1,21 @@
+
+public class Point {
+	private float xValue;
+	private float yValue;
+
+	public Point(float xValue, float yValue) {
+
+		this.xValue = xValue;
+		this.yValue = yValue;
+
+	}
+	
+	public float getX() {
+		return xValue;
+	}
+	
+	public float getY() {
+		return yValue;
+	}
+
+}
