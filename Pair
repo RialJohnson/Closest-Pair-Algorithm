@@ -1,3 +1,35 @@
+
 public class Pair {
+
+	// we will need to make a pair class to compare two points and the calculate distance
+	public Point point1 = null;
+	public Point point2 = null;
+	public double distance = 0.0;
+
+	// constructors
+	public Pair() {
+	}
+
+	public Pair(Point point1, Point point2) {
+		this.point1 = point1;
+		this.point2 = point2;
+		calcDistance();
+	}
+
+	public void update(Point point1, Point point2, double distance) {
+		this.point1 = point1;
+		this.point2 = point2;
+		this.distance = distance;
+	}
+
+	// assigning/calculating the distance between the two points
+	public void calcDistance() {
+		this.distance = ClosestPair.distance(point1, point2);
+	}
+
+	// ability to print out the x and y variables in a string
+	public String toString() {
+		return point1 + "-" + point2 + " : " + distance;
+	}
 
 }
