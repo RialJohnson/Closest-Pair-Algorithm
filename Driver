@@ -1,14 +1,13 @@
 
-public class Driver {
-	
-	public static void main(String[] args) {
-		
-		ClosestPair run = new ClosestPair();
-		
-		
-		
-		
-		
-	}
 
+public class Driver
+{
+
+    public static void main(String[] args){
+
+
+    // run the program
+       new ClosestPair();
+
+    }
 }
