@@ -1,21 +1,19 @@
 
 public class Point {
-	private float xValue;
-	private float yValue;
-
-	public Point(float xValue, float yValue) {
-
-		this.xValue = xValue;
-		this.yValue = yValue;
-
-	}
 	
-	public float getX() {
-		return xValue;
-	}
+	//creating the variables for the points x and y coordinates 
+    public final double x;
+    public final double y;
 	
-	public float getY() {
-		return yValue;
-	}
+	//assigning the variables
+    public Point(double x, double y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+	//ability to print out the x and y variables in a string
+    public String toString()
+    {  return "(" + x + ", " + y + ")";  }
 
 }
