@@ -83,30 +83,33 @@ public class ClosestPair
 
     public static class Point
     {
+		//creating the variables for the points x and y coordinates 
         public final double x;
         public final double y;
-
+		
+		//assigning the variables
         public Point(double x, double y)
         {
             this.x = x;
             this.y = y;
         }
 
+		//ability to print out the x and y variables in a string
         public String toString()
         {  return "(" + x + ", " + y + ")";  }
     }
 
     public static class Pair
     {
+		//we will need to make a pair class to compare two points and the calculate distance
         public Point point1 = null;
         public Point point2 = null;
         public double distance = 0.0;
 
-        public Pair()
-        {  }
+        public Pair(){
+		}
 
-        public Pair(Point point1, Point point2)
-        {
+        public Pair(Point point1, Point point2){
             this.point1 = point1;
             this.point2 = point2;
             calcDistance();
@@ -118,21 +121,27 @@ public class ClosestPair
             this.point2 = point2;
             this.distance = distance;
         }
-
+		
+		//assigning/calculating the distance between the two points
         public void calcDistance()
         {  this.distance = distance(point1, point2);  }
 
+		//ability to print out the x and y variables in a string
         public String toString()
         {  return point1 + "-" + point2 + " : " + distance;  }
     }
 
     public static double distance(Point p1, Point p2)
     {
+		//in order to calculate distances we need both the distances of x and y of each coordinate
         double xdist = p2.x - p1.x;
         double ydist = p2.y - p1.y;
 
+		//need hypotenuse to find the full distance
         double trueDistance = Math.hypot(xdist, ydist);
 
+		//Originally the distance converts it into a very long floating point. We however are only interested in
+		//accuracy up to two decimals
         double scale = Math.pow(10, 1);
 
         double roundedResult = Math.round(trueDistance * scale) / scale;
@@ -142,6 +151,10 @@ public class ClosestPair
 
     public static Pair bruteForce(List<? extends Point> points)
     {
+		
+		//When we are at the points were we are in the simplest cast, we use the bruteforce method
+		//to find the the distance
+		
         int numPoints = points.size();
         if (numPoints < 2)
             return null;
@@ -168,6 +181,7 @@ public class ClosestPair
 
     public static void sortByX(List<? extends Point> points)
     {
+		//sorting the lists by the X values
         Collections.sort(points, new Comparator<Point>() {
                     public int compare(Point point1, Point point2)
                     {
@@ -183,6 +197,7 @@ public class ClosestPair
 
     public static void sortByY(List<? extends Point> points)
     {
+		//sorting the lists by the Y values
         Collections.sort(points, new Comparator<Point>() {
                     public int compare(Point point1, Point point2)
                     {
@@ -198,6 +213,8 @@ public class ClosestPair
 
     public static Pair divideAndConquer(List<? extends Point> points)
     {
+		//recursively dividing the lists into sub lists until we have the simplest case
+		
         List<Point> pointsSortedByX = new ArrayList<Point>(points);
         sortByX(pointsSortedByX);
         List<Point> pointsSortedByY = new ArrayList<Point>(points);
@@ -206,17 +223,19 @@ public class ClosestPair
     }
 
     private static Pair divideAndConquer(List<? extends Point> pointsSortedByX, List<? extends Point> pointsSortedByY)
-    {
+    {	
+		//recursively dividing the list into sub arrays until we have the simplest case (under 3)
         int numPoints = pointsSortedByX.size();
         if (numPoints <= 3)
             return bruteForce(pointsSortedByX);
 
         int dividingIndex = numPoints >>> 1;
+		
+		//divides current list into left and right sub arrays based off of the parent list's center
         List<? extends Point> leftOfCenter = pointsSortedByX.subList(0, dividingIndex);
         List<? extends Point> rightOfCenter = pointsSortedByX.subList(dividingIndex, numPoints);
 
-        System.out.println("\n\nThis is this dividing index = " + dividingIndex);
-
+		//creates temperary list to store the sub list into for both the left and right side
         List<Point> tempList = new ArrayList<Point>(leftOfCenter);
         sortByY(tempList);
         Pair closestPair = divideAndConquer(leftOfCenter, tempList);
@@ -228,19 +247,24 @@ public class ClosestPair
         Pair closestPairRight = divideAndConquer(rightOfCenter, tempList);
 
 
-
+		//if the current closest pair is smaller than the current systems right closest pair, label it as the new
+		//system's right closest pair
         if (closestPairRight.distance < closestPair.distance) {
             closestPair = closestPairRight;
-
         }
 
+		//clear the temp list 
         tempList.clear();
+		
+		//create a variable to store the shortest distance of our pairs
         double shortestDistance =closestPair.distance;
         double centerX = rightOfCenter.get(0).x;
         for (Point point : pointsSortedByY)
             if (Math.abs(centerX - point.x) < shortestDistance)
                 tempList.add(point);
 
+			
+			
         for (int i = 0; i < tempList.size() - 1; i++)
         {
             Point point1 = tempList.get(i);
@@ -285,7 +309,11 @@ public class ClosestPair
             points.add(new Point(values[i], values[i+1]));
             k++;
         }
-        Pair bruteForceClosestPair = bruteForce(points);
+		
+        //when we are down to the simplest case we will use the brute force method
+		Pair bruteForceClosestPair = bruteForce(points);
+		
+		//if we are not at the simplest case we must divide and conquer
         Pair dqClosestPair = divideAndConquer(points);
 
 
