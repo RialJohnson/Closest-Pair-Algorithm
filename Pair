@@ -13,7 +13,7 @@ public class Pair {
 	public Pair(Point point1, Point point2) {
 		this.point1 = point1;
 		this.point2 = point2;
-		calcDistance();
+		calcgetDistance();
 	}
 
 	public void update(Point point1, Point point2, double distance) {
@@ -23,13 +23,13 @@ public class Pair {
 	}
 
 	// assigning/calculating the distance between the two points
-	public void calcDistance() {
-		this.distance = ClosestPair.distance(point1, point2);
+	public void calcgetDistance() {
+		this.distance = ClosestPair.getDistance(point1, point2);
 	}
 
 	// ability to print out the x and y variables in a string
-	public String toString() {
-		return point1 + "-" + point2 + " : " + distance;
+	public String print() {
+		return "P1: " + point1 + ", P2: " + point2 + ", Distance: " + distance;
 	}
 
 }
