@@ -1,4 +1,4 @@
-
+// a class to hold point objects (x and y coordinates)
 public class Point {
 	
 	//creating the variables for the points x and y coordinates 
@@ -6,13 +6,13 @@ public class Point {
     public final double y;
 	
 	//assigning the variables
-    public Point(double x, double y)
+    public Point(double inX, double inY)
     {
-        this.x = x;
-        this.y = y;
+        x = inX;
+        y = inY;
     }
 
-	//ability to print out the x and y variables in a string
+	// method to print out the point + formatting
     public String toString()
     {  return "(" + x + ", " + y + ")";  }
 
