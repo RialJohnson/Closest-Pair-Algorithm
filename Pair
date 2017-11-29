@@ -1,4 +1,4 @@
-
+// a class to hold pair objects, the two points in the pair and the distance between them
 public class Pair {
 
 	// we will need to make a pair class to compare two points and the calculate distance
@@ -10,16 +10,16 @@ public class Pair {
 	public Pair() {
 	}
 
-	public Pair(Point point1, Point point2) {
-		this.point1 = point1;
-		this.point2 = point2;
+	public Pair(Point p1, Point p2) {
+		point1 = p1;
+		point2 = p2;
 		calcgetDistance();
 	}
 
-	public void update(Point point1, Point point2, double distance) {
-		this.point1 = point1;
-		this.point2 = point2;
-		this.distance = distance;
+	public void update(Point p1, Point p2, double d) {
+		point1 = p1;
+		point2 = p2;
+		distance = d;
 	}
 
 	// assigning/calculating the distance between the two points
