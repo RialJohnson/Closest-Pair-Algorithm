@@ -1,19 +1,35 @@
-// a class to hold point objects (x and y coordinates)
-public class Point {
-	
-	//creating the variables for the points x and y coordinates 
-    public final double x;
-    public final double y;
-	
-	//assigning the variables
-    public Point(double inX, double inY)
-    {
-        x = inX;
-        y = inY;
-    }
+// a class to hold pair objects, the two points in the pair and the distance between them
+public class Pair {
 
-	// method to print out the point + formatting
-    public String toString()
-    {  return "(" + x + ", " + y + ")";  }
+	// we will need to make a pair class to compare two points and the calculate distance
+	public Point point1 = null;
+	public Point point2 = null;
+	public double distance = 0.0;
+
+	// constructors
+	public Pair() {
+	}
+
+	public Pair(Point p1, Point p2) {
+		point1 = p1;
+		point2 = p2;
+		calcgetDistance();
+	}
+
+	public void update(Point p1, Point p2, double d) {
+		point1 = p1;
+		point2 = p2;
+		distance = d;
+	}
+
+	// assigning/calculating the distance between the two points
+	public void calcgetDistance() {
+		this.distance = ClosestPair.getDistance(point1, point2);
+	}
+
+	// ability to print out the x and y variables in a string
+	public String print() {
+		return "P1: " + point1 + ", P2: " + point2 + ", Distance: " + distance;
+	}
 
 }
