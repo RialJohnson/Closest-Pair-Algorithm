@@ -1,5 +1,10 @@
+/** Rial Johnson and Connor Overcast
+ *  CSCI232 - Lab 4
+ * 	Lab 6-8 p.m.
+ *  A divide-and-conquer approach to the closest pairs problem
+ */
 
-
+// a simple driver to run the entire program
 public class Driver
 {
 
